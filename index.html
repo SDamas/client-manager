@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Normalize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- Javascript -->
+    <script type="module" src="/js/clientList.js" defer></script>
+    <script type="module" src="/js/client.js" defer></script>
+    <script type="module" src="/js/modal.js" defer></script>
+    <title>Client Manager</title>
+  </head>
+  <body>
+    <div id="app">
+      <nav>
+        <span>Client Manager</span>
+        <div id="search-bar">
+          <div id="search-btn">
+            <span class="material-symbols-outlined">search</span>
+          </div>
+          <div id="search-field" editable>Search by name...</div>
+        </div>
+      </nav>
+      <button id="add-new-client">+ Add client</button>
+      <!-- New client modal -->
+      <div id="modal-background"></div>
+      <div id="modal">
+        <div id="modal-content">
+          <table>
+            <h2>New client</h2>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Project</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <hr>
+            <tbody>
+              <tr>
+                <td><input id="clientName" type="text"></td>
+                <td><input id="clientCompany" type="text"></td>
+                <td><input id="clientEmail" type="text"></td>
+                <td><input id="clientPhone" type="char"></td>
+                <td><input id="clientProject" type="text"></td>
+                <td>
+                  <select id="clientStatus">
+                    <option>In progress</option>
+                    <option>Finished</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <span id="close-modal">X</span>
+          <span id="save-client">Save</span>
+        </div>
+      </div>
+      <main id="client-list">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Company</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Project</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <hr>
+          <tbody>
+          </tbody>
+        </table>
+      </main>
+      <footer>
+        &copy; Not a real business - by Samad Damas
+      </footer>
+    </div>
+  </body>
+</html>
