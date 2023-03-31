@@ -51,11 +51,12 @@
             <hr>
             <tbody>
               <tr>
-                <td><input id="clientName" type="text"></td>
-                <td><input id="clientCompany" type="text"></td>
-                <td><input id="clientEmail" type="text"></td>
-                <td><input id="clientPhone" type="char"></td>
-                <td><input id="clientProject" type="text"></td>
+                <td style="display: none;"><input id="clientId" type="hidden" style="display: none;" autocomplete="off"></td>
+                <td><input id="clientName" type="text" autocomplete="off"></td>
+                <td><input id="clientCompany" type="text" autocomplete="off"></td>
+                <td><input id="clientEmail" type="text" autocomplete="off"></td>
+                <td><input id="clientPhone" type="char" autocomplete="off"></td>
+                <td><input id="clientProject" type="text" autocomplete="off"></td>
                 <td>
                   <select id="clientStatus">
                     <option>In progress</option>
@@ -86,6 +87,7 @@
           <tbody>
           </tbody>
         </table>
+        <span id="no-clients-message"></span>
       </main>
       <footer>
         &copy; Not a real business - by Samad Damas

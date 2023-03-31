@@ -22,4 +22,9 @@ modalBackground.addEventListener("click", () => {
 closeModal.addEventListener("click", () => {
   modalBackground.style.display = "none";
   modal.style.display = "none";
-}) 
+})
+
+export function openClientModal() {
+  modalBackground.style.display = "block";
+  modal.style.display = "block";
+}

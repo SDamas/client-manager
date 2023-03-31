@@ -1,3 +1,5 @@
+import { openClientModal } from "./modal.js";
+
 export function getClient(clientId) {
   const client = JSON.parse(localStorage.getItem(clientId));
   return client;
@@ -30,6 +32,7 @@ export function getClients() {
 }
 
 export function getNewClientInfo() {
+  const clientId = document.querySelector("#clientId").value;
   const clientName = document.querySelector("#clientName").value;
   const clientCompany = document.querySelector("#clientCompany").value;
   const clientEmail = document.querySelector("#clientEmail").value;
@@ -38,6 +41,7 @@ export function getNewClientInfo() {
   const clientStatus = document.querySelector("#clientStatus").value;
 
   const info = {
+    id: clientId,
     name: clientName,
     company: clientCompany,
     email: clientEmail,
@@ -58,6 +62,29 @@ export function deleteClient(clientId) {
   renderClientList();
 }
 
+export function editClient(clientId) {
+  const client = getClient(clientId);
+  document.querySelector("#clientId").value = client.id;
+  document.querySelector("#clientName").value = client.name;
+  document.querySelector("#clientCompany").value = client.company;
+  document.querySelector("#clientEmail").value = client.email;
+  document.querySelector("#clientPhone").value = client.phone;
+  document.querySelector("#clientProject").value = client.project;
+  document.querySelector("#clientStatus").value = client.status;
+  openClientModal()
+}
+
+export function updateClient(client) {
+  localStorage.setItem(client.id, JSON.stringify(client));
+  document.querySelector("#clientId").value = "";
+  document.querySelector("#clientName").value = "";
+  document.querySelector("#clientCompany").value = ""
+  document.querySelector("#clientEmail").value = "";
+  document.querySelector("#clientPhone").value = "";
+  document.querySelector("#clientProject").value = "";
+  document.querySelector("#clientStatus").value = "";
+}
+
 function loadClientRow(client) {
   // Create row
   const tr = document.createElement("tr")
@@ -65,10 +92,11 @@ function loadClientRow(client) {
   for (const info in client) {
     const td = document.createElement("td")
     // Skips the id information. It is a hidden property.
-    if (info !== "id") {
-      td.textContent = client[`${info}`]
-      tr.appendChild(td);
+    if (info === "id") {
+      td.style.display = "none";
     }
+    td.textContent = client[`${info}`]
+    tr.appendChild(td);
   }
 
   // Add edit and delete buttons
@@ -85,6 +113,9 @@ function generateActionBtns(clientId) {
   editBtn.classList.add("material-symbols-outlined")
   editBtn.setAttribute("data-edit", `${clientId}`);
   editBtn.textContent = "edit";
+  editBtn.addEventListener("click", () => {
+    editClient(clientId)
+  })
   
   const deleteBtn = document.createElement("span");
   deleteBtn.classList.add("material-symbols-outlined")

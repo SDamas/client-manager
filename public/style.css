@@ -66,6 +66,11 @@ nav #search-field {
   font-weight: 500;
   margin-left: 34px;
   margin-top: 30px;
+  cursor: pointer;
+}
+
+#add-new-client:hover {
+  background: #2e2e2e;
 }
 
 /* client list */
@@ -161,6 +166,26 @@ td select {
 }
 
 #save-client {
-  display: block;
+  position: absolute;
+  right: 3rem;
+  bottom: 1rem;
+  width: 100px;
+  text-align: center;
+  background: var(--color-secondary);
+  color: var(--color-white);
+  padding: .5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#save-client:hover {
+  background: #0b5abd;
 }
 /* End of modal */
+
+#no-clients-message {
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+  color: gray;
+}
