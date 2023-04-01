@@ -109,6 +109,15 @@ function loadClientRow(client) {
 function generateActionBtns(clientId) {
   const actionBtns = document.createElement("td");
 
+  // Create link element
+  const link = document.createElement("a");
+  link.setAttribute("href", `/client.html?id=${clientId}`);
+  const viewBtn = document.createElement("span");
+  viewBtn.classList.add("material-symbols-outlined")
+  viewBtn.setAttribute("data-view", `${clientId}`);
+  viewBtn.textContent = "visibility";
+  link.appendChild(viewBtn);
+
   const editBtn = document.createElement("span");
   editBtn.classList.add("material-symbols-outlined")
   editBtn.setAttribute("data-edit", `${clientId}`);
@@ -127,6 +136,7 @@ function generateActionBtns(clientId) {
   })
 
   // Append buttons to row
+  actionBtns.appendChild(link)
   actionBtns.appendChild(editBtn)
   actionBtns.appendChild(deleteBtn)
 
