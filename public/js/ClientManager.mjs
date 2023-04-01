@@ -1,8 +1,14 @@
-import { openClientModal } from "./modal.js";
+// import { openClientModal } from "./modal.js";
+
+import { checkStatusLabel } from "./utilities.js";
 
 export function getClient(clientId) {
   const client = JSON.parse(localStorage.getItem(clientId));
   return client;
+}
+
+export function renderClient(client) {
+  return loadClientTemplate(client);
 }
 
 export function renderClientList() {
@@ -14,6 +20,8 @@ export function renderClientList() {
   outputSelector.innerHTML = "";
   const clientRows = list.map(loadClientRow);
   clientRows.forEach(row => outputSelector.appendChild(row));
+
+  checkStatusLabel();
 }
 
 export function getClients() {
@@ -95,6 +103,10 @@ function loadClientRow(client) {
     if (info === "id") {
       td.style.display = "none";
     }
+    if (info == "status") {
+      td.classList.add("status-label")
+    }
+
     td.textContent = client[`${info}`]
     tr.appendChild(td);
   }
@@ -141,4 +153,42 @@ function generateActionBtns(clientId) {
   actionBtns.appendChild(deleteBtn)
 
   return actionBtns;
+}
+
+function loadClientTemplate(client) {
+  return `
+  <section id="client-and-project">
+    <div id="client-info">
+      <h1 id="name">${client.name}</h1>
+      <p id="company"><b>${client.company}</b></p>
+      <p id="email">${client.email}</p>
+      <p id="phone">${client.phone}</p>
+      <a href="https://wa.me/1${client.phone}"><button id="send-message">Send message</button></a>
+    </div>
+    <div id="project-info">
+      <h1 id="project-name">${client.project}</h1>
+      <div id="payment">
+        <p>Payment</p>
+        <p id="payment-price">$100.00</p>
+      </div>
+      <div id="delivery-date">
+        <p>Delivery Date</p>
+        <p id="date">04/18/2023</p>
+      </div>
+      <div id="status">
+        <p>Status</p>
+        <p class="status-label">${client.status}</p>
+      </div>
+      <button>Finish Project</button>
+    </div>
+    </section>
+    <hr>
+    <section id="notes-section">
+      <div id="notes">
+        <h1>Notes<span class="material-symbols-outlined">edit_square</span></h1>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </div>
+    </section>
+  <section>
+  ` 
 }
