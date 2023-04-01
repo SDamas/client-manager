@@ -92,6 +92,10 @@ table thead th {
   font-weight: 600;
 }
 
+table tr a {
+  color: var(--color-primary);
+}
+
 table th, table td {
   padding: 0 1rem;
   text-align: left;
