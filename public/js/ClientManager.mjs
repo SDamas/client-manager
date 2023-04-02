@@ -160,24 +160,24 @@ function loadClientTemplate(client) {
   <section id="client-and-project">
     <div id="client-info">
       <h1 id="name">${client.name}</h1>
-      <p id="company"><b>${client.company}</b></p>
-      <p id="email">${client.email}</p>
-      <p id="phone">${client.phone}</p>
+      <div id="company"><b>${client.company}</b></div>
+      <div id="email">${client.email}</div>
+      <div id="phone">${client.phone}</div>
       <a href="https://wa.me/1${client.phone}"><button id="send-message">Send message</button></a>
     </div>
     <div id="project-info">
       <h1 id="project-name">${client.project}</h1>
-      <div id="payment">
-        <p>Payment</p>
-        <p id="payment-price">$100.00</p>
+      <div class="project-detail">
+        <div>Payment</div>
+        <div id="payment-price">$100.00</div>
       </div>
-      <div id="delivery-date">
-        <p>Delivery Date</p>
-        <p id="date">04/18/2023</p>
+      <div class="project-detail">
+        <div>Delivery Date</div>
+        <div id="date">04/18/2023</div>
       </div>
-      <div id="status">
-        <p>Status</p>
-        <p class="status-label">${client.status}</p>
+      <div class="project-detail">
+        <div>Status</div>
+        <div class="status-label">${client.status}</div>
       </div>
       <button>Finish Project</button>
     </div>
