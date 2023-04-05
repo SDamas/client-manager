@@ -133,6 +133,10 @@ table td {
   word-wrap: break-word;
 }
 
+.action-btns span {
+  cursor: pointer;
+}
+
 #no-clients-message {
   width: 100%;
   text-align: center;
@@ -153,7 +157,7 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 100;
   display: none;
 }
@@ -162,7 +166,8 @@ footer {
   position: fixed;
   z-index: 101;
   width: 1261px;
-  height: 222px;
+  height: fit-content;
+  padding: 2rem 0;
   background: #FFFFFF;
   border-radius: 4px;
   top: 40%;
@@ -172,10 +177,19 @@ footer {
 }
 
 #modal-content {
+  padding: 0 2rem;
+}
+
+#modal-content form #form-fields {
   display: flex;
+}
+
+#modal-content form {
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  padding-left: 1rem;
+  position: relative;
 }
 
 #modal-content #close-modal {
@@ -186,38 +200,55 @@ footer {
   cursor: pointer;
 }
 
-td input {
+#modal-content .form-field {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+
+#modal-content .form-field label {
+  font-weight: 500;
+}
+
+#modal-content input, select {
   max-width: 147px;
-  margin-top: 1rem;
+  margin-top: .4rem;
   height: 40px;
   border: 1px solid #C6C6C6;
   border-radius: 4px;
 }
 
-td select {
-  max-width: 147px;
-  margin-top: 1rem;
-  height: 40px;
-  background: #FFFFFF;
-  border: 1px solid #C6C6C6;
-  border-radius: 4px;
+#modal-content select {
+  background: none;
+  height: 44px;
 }
 
 #save-client {
-  position: absolute;
-  right: 3rem;
-  bottom: 1rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+#save-client button {
   width: 100px;
+  height: 44px;
   text-align: center;
   background: var(--color-secondary);
   color: var(--color-white);
   padding: .5rem;
   border-radius: 4px;
   cursor: pointer;
+  border: none;
 }
 
-#save-client:hover {
+#save-client button:hover {
   background: #0b5abd;
+}
+
+#action-message {
+  width: 100%;
+  max-width: 98%;
+  text-align: right;
+  margin-top: 1rem;
 }
 /* End of modal */
 

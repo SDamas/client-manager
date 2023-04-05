@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/style.css">
     <!-- Javascript -->
     <script type="module" src="/js/clientList.js" defer></script>
-    <script type="module" src="/js/save-client.js" defer></script>
+    <script type="module" src="/js/client-form.js" defer></script>
     <script type="module" src="/js/modal.js" defer></script>
     <title>Client Manager</title>
   </head>
@@ -36,39 +36,43 @@
       <div id="modal-background"></div>
       <div id="modal">
         <div id="modal-content">
-          <table>
-            <h2>New client</h2>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Company</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Project</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <hr>
-            <tbody>
-              <tr>
-                <td style="display: none;"><input id="clientId" type="hidden" style="display: none;" autocomplete="off"></td>
-                <td><input id="clientName" type="text" autocomplete="off"></td>
-                <td><input id="clientCompany" type="text" autocomplete="off"></td>
-                <td><input id="clientEmail" type="text" autocomplete="off"></td>
-                <td><input id="clientPhone" type="char" autocomplete="off"></td>
-                <td><input id="clientProject" type="text" autocomplete="off"></td>
-                <td>
-                  <select id="clientStatus">
-                    <option>In progress</option>
-                    <option>Finished</option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <form id="client-form">
+            <h2 id="modal-type">New client</h2>
+            <div id="form-fields">
+              <input id="clientId" type="hidden" style="display: none;" autocomplete="off">
+              <div class="form-field">
+                <label for="clientName">Name:</label>
+                <input id="clientName" name="clientName" type="text" required>
+              </div>
+              <div class="form-field">
+                <label for="clientCompany">Company:</label>
+                <input id="clientCompany" name="clientCompany" type="text" required>
+              </div>
+              <div class="form-field">
+                <label for="clientEmail">Email:</label>
+                <input id="clientEmail" name="clientEmail" type="email" required>
+              </div>
+              <div class="form-field">
+                <label for="clientPhone">Phone:</label>
+                <input id="clientPhone" name="clientPhone" type="tel" required>
+              </div>
+              <div class="form-field">
+                <label for="clientProject">Project:</label>
+                <input id="clientProject" name="clientProject" type="text" required>
+              </div>
+              <div class="form-field">
+                <label for="clientStatus">Status:</label>
+                <select id="clientStatus" name="clientStatus">
+                  <option value="In progress">In progress</option>
+                  <option value="Finished">Finished</option>
+                </select>
+              </div>
+              <div id="save-client"><button type="submit" form="client-form">Save</button></div>
+            </div>
+            <span id="action-message"></span>
+          </form>
           <span id="close-modal">X</span>
-          <span id="save-client">Save</span>
-        </div>
+        </div>        
       </div>
       <main id="client-list">
         <table>

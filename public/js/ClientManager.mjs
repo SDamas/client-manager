@@ -1,5 +1,3 @@
-// import { openClientModal } from "./modal.js";
-
 import { checkStatusLabel } from "./utilities.js";
 
 export function getClient(clientId) {
@@ -79,18 +77,10 @@ export function editClient(clientId) {
   document.querySelector("#clientPhone").value = client.phone;
   document.querySelector("#clientProject").value = client.project;
   document.querySelector("#clientStatus").value = client.status;
-  openClientModal()
 }
 
 export function updateClient(client) {
   localStorage.setItem(client.id, JSON.stringify(client));
-  document.querySelector("#clientId").value = "";
-  document.querySelector("#clientName").value = "";
-  document.querySelector("#clientCompany").value = ""
-  document.querySelector("#clientEmail").value = "";
-  document.querySelector("#clientPhone").value = "";
-  document.querySelector("#clientProject").value = "";
-  document.querySelector("#clientStatus").value = "";
 }
 
 function loadClientRow(client) {
@@ -120,6 +110,7 @@ function loadClientRow(client) {
 
 function generateActionBtns(clientId) {
   const actionBtns = document.createElement("td");
+  actionBtns.classList.add("action-btns")
 
   // Create link element
   const link = document.createElement("a");
@@ -191,4 +182,9 @@ function loadClientTemplate(client) {
     </section>
   <section>
   ` 
+}
+
+export function validateInfo() {
+  const inputFields = document.querySelectorAll("#modal-content tr input");
+  console.log(Array.from(inputFields));
 }
