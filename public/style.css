@@ -36,9 +36,16 @@ button {
   color: var(--color-secondary);
 }
 
+a {
+  text-decoration: none;
+}
 /* End of global styles */
 
 /* Navbar */
+#navbar {
+  height: 67px;
+}
+
 nav {
   height: 67px;
   background: var(--color-primary);
@@ -124,17 +131,19 @@ table tr a {
 }
 
 table th, table td {
-  padding: 0 1rem;
+  padding: 0 2rem;
   text-align: left;
 }
 
 table td {
   max-width: 147px;
   word-wrap: break-word;
+  color: var(--color-primary);
 }
 
 .action-btns span {
   cursor: pointer;
+  color: var(--color-primary);
 }
 
 #no-clients-message {
@@ -216,6 +225,7 @@ footer {
   height: 40px;
   border: 1px solid #C6C6C6;
   border-radius: 4px;
+  padding-left: .4rem;
 }
 
 #modal-content select {

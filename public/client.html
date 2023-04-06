@@ -16,20 +16,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/style.css">
     <!-- Javascript -->
+    <script src="/js/layout.js" type="module" defer></script>
     <script type="module" src="/js/client.js" defer></script>
     <title>Client Manager</title>
   </head>
   <body>
     <div id="app">
-      <nav>
-        <span>Client Manager</span>
-        <div id="search-bar">
-          <div id="search-btn">
-            <span class="material-symbols-outlined">search</span>
-          </div>
-          <div id="search-field" editable>Search by name...</div>
-        </div>
-      </nav>
+      <div id="navbar"></div>
       <main id="client-view"></main>
       <footer>
         &copy; Not a real business - by Samad Damas

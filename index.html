@@ -15,6 +15,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/style.css">
     <!-- Javascript -->
+    <script src="/js/layout.js" type="module" defer></script>
     <script type="module" src="/js/clientList.js" defer></script>
     <script type="module" src="/js/client-form.js" defer></script>
     <script type="module" src="/js/modal.js" defer></script>
@@ -22,15 +23,7 @@
   </head>
   <body>
     <div id="app">
-      <nav>
-        <span>Client Manager</span>
-        <div id="search-bar">
-          <div id="search-btn">
-            <span class="material-symbols-outlined">search</span>
-          </div>
-          <div id="search-field" editable>Search by name...</div>
-        </div>
-      </nav>
+      <div id="navbar"></div>
       <button id="add-new-client">+ Add client</button>
       <!-- New client modal -->
       <div id="modal-background"></div>
@@ -93,9 +86,7 @@
         </table>
         <span id="no-clients-message"></span>
       </main>
-      <footer>
-        &copy; Not a real business - by Samad Damas
-      </footer>
+      <div id="footer"></div>
     </div>
   </body>
 </html>

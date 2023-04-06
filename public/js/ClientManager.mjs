@@ -1,4 +1,7 @@
+// The client manager is responsible for all client functionalities, it is the bridge of communication to access and manipulate the localStorage
+
 import { checkStatusLabel } from "./utilities.js";
+import { openClientModal } from "./utilities.js";
 
 export function getClient(clientId) {
   const client = JSON.parse(localStorage.getItem(clientId));
@@ -6,23 +9,38 @@ export function getClient(clientId) {
 }
 
 export function renderClient(client) {
+  // This function renders a client's info to be displayed in the client.html page
   return loadClientTemplate(client);
 }
 
 export function renderClientList() {
-  // Ideally this function should take a "outputSelector, list" to be dynamic. I will work on it. 
+  // This function renders the client list in the outputElement
 
-  const outputSelector = document.querySelector("#client-list tbody");
+  // Get the no clients message element
+  const noClientsMessage = document.querySelector("#no-clients-message")
+
+  // If there are clients in the local storage, no message is displayed
+  if (localStorage.length !== 0) {
+    noClientsMessage.textContent = ""; 
+    // If there are no clients, a message is displayed  
+  } else {
+    noClientsMessage.textContent = "No clients to display.";
+  }
+
+  const outputElement = document.querySelector("#client-list tbody");
   const list = getClients();
 
-  outputSelector.innerHTML = "";
+  outputElement.innerHTML = "";
+  // Generate the client rows
   const clientRows = list.map(loadClientRow);
-  clientRows.forEach(row => outputSelector.appendChild(row));
+  // Append the rows to the outputElement
+  clientRows.forEach(row => outputElement.appendChild(row));
 
   checkStatusLabel();
 }
 
 export function getClients() {
+  // This function gets the clients from localStorage
   const clients = [];
 
   Object.keys(localStorage).forEach((key) => {
@@ -38,6 +56,7 @@ export function getClients() {
 }
 
 export function getNewClientInfo() {
+  // This function gets the values from the client modal inputs and return an "info" object
   const clientId = document.querySelector("#clientId").value;
   const clientName = document.querySelector("#clientName").value;
   const clientCompany = document.querySelector("#clientCompany").value;
@@ -60,7 +79,7 @@ export function getNewClientInfo() {
 }
 
 export function addClient(client) {
-  localStorage.setItem(client.getId(), JSON.stringify(client));
+  localStorage.setItem(client.id, JSON.stringify(client));
 }
 
 export function deleteClient(clientId) {
@@ -77,6 +96,7 @@ export function editClient(clientId) {
   document.querySelector("#clientPhone").value = client.phone;
   document.querySelector("#clientProject").value = client.project;
   document.querySelector("#clientStatus").value = client.status;
+  openClientModal();
 }
 
 export function updateClient(client) {
@@ -101,7 +121,7 @@ function loadClientRow(client) {
     tr.appendChild(td);
   }
 
-  // Add edit and delete buttons
+  // Add view, edit and delete buttons
   const actionBtns = generateActionBtns(client["id"]);
   tr.appendChild(actionBtns);
 
@@ -112,7 +132,7 @@ function generateActionBtns(clientId) {
   const actionBtns = document.createElement("td");
   actionBtns.classList.add("action-btns")
 
-  // Create link element
+  // Create a link element and append the view button to it
   const link = document.createElement("a");
   link.setAttribute("href", `/client.html?id=${clientId}`);
   const viewBtn = document.createElement("span");
@@ -121,6 +141,7 @@ function generateActionBtns(clientId) {
   viewBtn.textContent = "visibility";
   link.appendChild(viewBtn);
 
+  // Create the edit button and add click event to the editClient function
   const editBtn = document.createElement("span");
   editBtn.classList.add("material-symbols-outlined")
   editBtn.setAttribute("data-edit", `${clientId}`);
@@ -128,17 +149,17 @@ function generateActionBtns(clientId) {
   editBtn.addEventListener("click", () => {
     editClient(clientId)
   })
-  
+
+  // Create the delete button and add click event to the deleteClient function
   const deleteBtn = document.createElement("span");
   deleteBtn.classList.add("material-symbols-outlined")
   deleteBtn.setAttribute("data-delete", `${clientId}`);
   deleteBtn.textContent = "delete";
   deleteBtn.addEventListener("click", () => {
     deleteClient(clientId);
-    console.log("Client deleted:" + clientId)
   })
 
-  // Append buttons to row
+  // Append buttons
   actionBtns.appendChild(link)
   actionBtns.appendChild(editBtn)
   actionBtns.appendChild(deleteBtn)
@@ -182,9 +203,4 @@ function loadClientTemplate(client) {
     </section>
   <section>
   ` 
-}
-
-export function validateInfo() {
-  const inputFields = document.querySelectorAll("#modal-content tr input");
-  console.log(Array.from(inputFields));
 }
